@@ -4,8 +4,8 @@
 #include "LinkedList_biblio.h"
 #include <math.h>
 
-#ifndef _Hashmap_BIBLIO_H_
-#define _LINKED_LIST_BIBLIO_H_
+#ifndef _HASHMAP_BIBLIO_H_
+#define _HASHMAP_BIBLIO_H_
 
 typedef struct Hashmap_biblio{
   int m;// la taille de la hashmap 
@@ -15,7 +15,7 @@ typedef struct Hashmap_biblio{
 
 //int liste_vide(LinkedList_biblio* Biblio);
 
-Hashmap_biblio* initTableHachage();
+Hashmap_biblio* initTableHachage(int m);
 int hashFunction(char* titre, char* auteur, int m);
 void ajouter_elem_map(Hashmap_biblio* Biblio,
            int num,char* titre, char* auteur);

@@ -54,8 +54,7 @@ void GetChaine(FILE *f,int taille_max,char *s)
 
 /* LECTURE ET TRANSFORMATION DE CARACTERES EN ENTIERS */
 
-int GetEntier(f)
-FILE *f ;
+int GetEntier(FILE *f)
   {
   char c ;
   int v, sign ;
@@ -83,10 +82,9 @@ FILE *f ;
 
 /* LECTURE ET TRANSFORMATION DE CARACTERES EN ENTIERS REELS */
 
-double GetReel(f)
-FILE *f;
+double GetReel(FILE *f)
 {
-  char c, ReadChar();
+  char c;
   int v,v1,puiss,i, sign;
   double nbr;
   int entrer;

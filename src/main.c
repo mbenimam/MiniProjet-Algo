@@ -197,5 +197,13 @@ if(typestruct == 2){
 
 
 
+  // on libere la bibliotheque et le nom de fichier avant de sortir
+  if(typestruct == 2){
+    liberer_espace(B);
+  }else{
+    liberer_espace_list(B_liste);
+  }
+  free(nomfic);
+
   return 0;
 }
