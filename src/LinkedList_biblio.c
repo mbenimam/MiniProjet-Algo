@@ -62,7 +62,7 @@ void lecture_n_entree_list(char* nomfic, int n, LinkedList_biblio *B){
     // lecture des lignes
     while((cpt < n) && (fgets(Buffer, TMP_MAX_LENGTH, f) != NULL)){
         // lecture du format
-        if(sscanf(Buffer, "%d %s %s", &tmp_num, tmp_titre, tmp_auteur) != 3){
+        if(sscanf(Buffer, "%d %29s %29s", &tmp_num, tmp_titre, tmp_auteur) != 3){
             fprintf(stderr, "Erreur de Format\n");
             return;
         }else{
@@ -161,16 +161,18 @@ s_livre* recherche_par_auteur_list(LinkedList_biblio* B, char* auteur){/*
     return NULL;}
 
 void supp_liste_rec(s_livre* t){
-  if(!t){
-    // liste vide on retourne
-    return;
+  // libere tous les livres a partir de t (iteratif pour ne pas depasser la pile)
+  while(t){
+    s_livre* suiv = t->suiv;
+    free(t->titre);
+    free(t->auteur);
+    free(t);
+    t = suiv;
   }
-  free(t->suiv);
-  free(t);
 }
 
 void liberer_espace_list(LinkedList_biblio* B){
-  if(!B){
+  if(B){
     supp_liste_rec(B->head);
     free(B);
   }

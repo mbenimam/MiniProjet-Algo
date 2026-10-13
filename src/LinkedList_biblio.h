@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "structs.h"
 
 #ifndef _LINKED_LIST_BIBLIO_H_
@@ -22,7 +23,7 @@ LinkedList_biblio* initialise_biblio();
 void ajouter_elem_list(LinkedList_biblio* Biblio,
            int num,char* titre, char* auteur);
 void afficher_liste(LinkedList_biblio* B);
-void lecture_n_entree_liste(char* nomfic, int n, LinkedList_biblio *B);
+void lecture_n_entree_list(char* nomfic, int n, LinkedList_biblio *B);
 
 s_livre* recherche_par_num_list(LinkedList_biblio* B, int num);
 s_livre* recherche_par_titre_list(LinkedList_biblio* B, char* titre);

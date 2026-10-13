@@ -39,17 +39,15 @@ int hashFunction(char* titre, char* auteur, int m){
     // fonction de kanuth
     double A = ((double)(sqrt(5) - 1.0))/(double)2.0;
     int k = 0; // la somme des caracteres titre auteur;
-    int i=0;
-    while(titre[i++])k+=((int)titre[i]);
-    while(auteur[i++])k+=((int)auteur[i]);
+    int i;
+    for(i=0; titre[i]; i++) k += (unsigned char)titre[i];
+    for(i=0; auteur[i]; i++) k += (unsigned char)auteur[i];
     return floor(m*(k*A - floor(k*A)));
 
 }
 void ajouter_elem_map(Hashmap_biblio* Biblio,
            int num,char* titre, char* auteur){
 
-        // creer d'abords l'element
-        s_livre* temp = creer_livre(num, titre, auteur);
         // on recherche son emplacement dans la map
         int indice = hashFunction(titre, auteur, Biblio->m);
         LinkedList_biblio* liste_temp = (Biblio->T)[indice];
@@ -81,7 +79,7 @@ void lecture_n_entree_map(char* nomfic, int n, Hashmap_biblio *B){
     // lecture des lignes
     while((cpt < n) && (fgets(Buffer, TMP_MAX_LENGTH, f) != NULL)){
         // lecture du format
-        if(sscanf(Buffer, "%d %s %s", &tmp_num, tmp_titre, tmp_auteur) != 3){
+        if(sscanf(Buffer, "%d %29s %29s", &tmp_num, tmp_titre, tmp_auteur) != 3){
             fprintf(stderr, "Erreur de Format\n");
             return;
         }else{
@@ -96,4 +94,12 @@ s_livre* recherche_par_num(Hashmap_biblio* B, int num){return NULL;}
 s_livre* recherche_par_titre(Hashmap_biblio* B, char* titre){return NULL;}
 s_livre* recherche_par_auteur(Hashmap_biblio* B, char* auteur){return NULL;}
 
-void liberer_espace(Hashmap_biblio* B){}
+void liberer_espace(Hashmap_biblio* B){
+    if(!B) return;
+    int i;
+    for(i=0; i<B->m; i++){
+        liberer_espace_list((B->T)[i]);
+    }
+    free(B->T);
+    free(B);
+}
