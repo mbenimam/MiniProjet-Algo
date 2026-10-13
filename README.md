@@ -1,4 +1,4 @@
-# MiniProjet-Algo
+# Library catalogue (data structures)
 
 ![C gnu11](https://img.shields.io/badge/C-gnu11-blue)
 ![tests 36 checks](https://img.shields.io/badge/tests-36%20checks-brightgreen)
